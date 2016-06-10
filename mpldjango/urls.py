@@ -20,4 +20,5 @@ urlpatterns = [
 	url(r'mplimage', 'mpl.views.mplimage'),
 	url(r'hr', 'hr.views.mplimage'),
 	url(r'^admin/', admin.site.urls),
+	url(r'', include('blog.urls')),
 ]
