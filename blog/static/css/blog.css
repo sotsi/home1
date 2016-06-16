@@ -8,7 +8,7 @@ padding-left: 15px;
 }
 
 .page-header {
-	background-color: #ff9400;
+	background-color: #99ccff;
 	margin-top: 0;
 	padding: 20px 20px 20px 40px;
 }
@@ -20,7 +20,7 @@ padding-left: 15px;
 .content {
 	margin-left: 40px;
 }
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5{
 	font-family: 'Courier', cursive;
 }
 .date {
@@ -44,4 +44,8 @@ h1, h2, h3, h4 {
 }
 .post h1 a, .post h1 a:visited {
 	color: #000000;
+}
+
+.post p {
+	text-align: justify;
 }
