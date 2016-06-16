@@ -90,7 +90,7 @@ E[8]=1.86
 def post_list(request):
 	return render(request, 'blog/my_plot.html')
 	
-def mplimage1(request):
+def mplimage(request):
 
 	class LinkedView(plugins.PluginBase):
 		"""A simple plugin showing how multiple axes can be linked"""
@@ -140,7 +140,7 @@ def mplimage1(request):
 	# TITLE/TEMPERATURE/LUMINOCITY/PERIOD/MINIMUM MAGNITUDE/MAGNITUDE VARIATION
 	variables_array = zip(T,P,A,C,D,E) #
 	
-	x = np.linspace(0, 100, 10000)
+	x = np.linspace(0, 1000, 10000)
 	data = np.array([[x, Ei + Di/2 + Di * np.sin((2*math.pi*x) / Ci)]
 					 for (Ei, Di, Ci) in zip(E, D, C)])
 	points = ax[0].scatter(P, A, c=1/(P), s=200, alpha=0.5)
@@ -173,7 +173,7 @@ def mplimage1(request):
 	
 	return django.http.HttpResponse(g)
 	
-def mplimage(request):
+def mplimage1(request):
 
 	# Define some CSS to control our custom labels
 	css = """
