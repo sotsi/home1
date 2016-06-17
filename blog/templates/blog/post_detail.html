@@ -6,6 +6,7 @@
 		{% endif %}
 		<h2>{{ post.title }}</h2>
 		{% if post.title == "Physics -> Instability Strip Live Graph" %}
+			{% include 'blog/loading.html' %}
 			<h5>Note: Use Firefox, Chrome or Opera as web browsers for viewing the live graphs.</h5>
 			{% include 'blog/inst_strip.html' %}
 			{% include 'blog/hr_full.html' %}
