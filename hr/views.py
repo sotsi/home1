@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt, mpld3
 
 #####################################
 np.random.seed(0)
-n_size=7
+n_size=6
 P = np.random.random(size=n_size)
 P[0]=6000
 P[1]=3313
@@ -28,7 +28,7 @@ P[3]=3300
 P[4]=5445
 #P[5]=5500
 P[5]=6151
-P[6]=5700
+#P[6]=5700
 #P[7]=7000
 
 A = np.random.random(size=n_size)
@@ -39,7 +39,7 @@ A[3]=3000
 A[4]=3200
 #A[5]=2900
 A[5]=1186
-A[6]=565
+#A[6]=565
 #A[7]=2440
 			
 T = ["%.2f" % x for x in A]
@@ -50,7 +50,7 @@ T[3]='Lepus - RX Leponis'
 T[4]='Dorado - beta Doradus'
 #T[5]='Gemini - zeta Geminorum'
 T[5]='Auriga - RT Aurigae'
-T[6]='Pavo - x Pavonis'
+#T[6]='Pavo - x Pavonis'
 #T[7]='Polaris - alpha Ursa Minoris'
 # The period of variables
 C = np.random.random(size=n_size)
@@ -61,7 +61,7 @@ C[3]=60
 C[4]=9.84
 #C[5]=10.15
 C[5]=3.73
-C[6]=9.09
+#C[6]=9.09
 #C[7]=3.97
 # The magnitude variation
 D = np.random.random(size=n_size)
@@ -72,7 +72,7 @@ D[3]=2.4
 D[4]=0.6
 #D[5]=0.6
 D[5]=0.8
-D[6]=0.9
+#D[6]=0.9
 #D[7]=0.3
 	
 # The magnitude mean value
@@ -84,7 +84,7 @@ E[3]=5
 E[4]=3.46
 #E[5]=3.62
 E[5]=5
-E[6]=3.91
+#E[6]=3.91
 #E[7]=1.86
 #####################################
 def post_list(request):
