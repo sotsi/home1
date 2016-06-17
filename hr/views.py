@@ -20,27 +20,27 @@ import matplotlib.pyplot as plt, mpld3
 #####################################
 np.random.seed(0)
 		
-P = np.random.random(size=9)
+P = np.random.random(size=8)
 P[0]=6000
 P[1]=3313
 P[2]=6125
 P[3]=3300
 P[4]=5445
-P[5]=5500
-P[6]=6151
-P[7]=5700
-P[8]=7000
+#P[5]=5500
+P[5]=6151
+P[6]=5700
+P[7]=7000
 
-A = np.random.random(size=9)
+A = np.random.random(size=8)
 A[0]=2000
 A[1]=4168
 A[2]=50
 A[3]=3000
 A[4]=3200
-A[5]=2900
-A[6]=1186
-A[7]=565
-A[8]=2440
+#A[5]=2900
+A[5]=1186
+A[6]=565
+A[7]=2440
 			
 T = ["%.2f" % x for x in A]
 T[0]='Cepheus - delta Cephei'
@@ -48,44 +48,44 @@ T[1]='Lyra - R Lyrae'
 T[2]='Lyra - RR Lyrae'
 T[3]='Lepus - RX Leponis'
 T[4]='Dorado - beta Doradus'
-T[5]='Gemini - zeta Geminorum'
-T[6]='Auriga - RT Aurigae'
-T[7]='Pavo - x Pavonis'
-T[8]='Polaris - alpha Ursa Minoris'
+#T[5]='Gemini - zeta Geminorum'
+T[5]='Auriga - RT Aurigae'
+T[6]='Pavo - x Pavonis'
+T[7]='Polaris - alpha Ursa Minoris'
 # The period of variables
-C = np.random.random(size=9)
+C = np.random.random(size=8)
 C[0]=5.3
 C[1]=46
 C[2]=0.57
 C[3]=60
 C[4]=9.84
-C[5]=10.15
-C[6]=3.73
-C[7]=9.09
-C[8]=3.97
+#C[5]=10.15
+C[5]=3.73
+C[6]=9.09
+C[7]=3.97
 # The magnitude variation
-D = np.random.random(size=9)
+D = np.random.random(size=8)
 D[0]=1.1
 D[1]=1.1
 D[2]=1
 D[3]=2.4
 D[4]=0.6
-D[5]=0.6
-D[6]=0.8
-D[7]=0.9
-D[8]=0.3
+#D[5]=0.6
+D[5]=0.8
+D[6]=0.9
+D[7]=0.3
 	
 # The magnitude mean value
-E = np.random.random(size=9)
+E = np.random.random(size=8)
 E[0]=3.5
 E[1]=3.9
 E[2]=7.06
 E[3]=5
 E[4]=3.46
-E[5]=3.62
-E[6]=5
-E[7]=3.91
-E[8]=1.86
+#E[5]=3.62
+E[5]=5
+E[6]=3.91
+E[7]=1.86
 #####################################
 def post_list(request):
 	return render(request, 'blog/my_plot.html')
@@ -140,7 +140,7 @@ def mplimage(request):
 	# TITLE/TEMPERATURE/LUMINOCITY/PERIOD/MINIMUM MAGNITUDE/MAGNITUDE VARIATION
 	variables_array = zip(T,P,A,C,D,E) #
 	
-	x = np.linspace(0, 1000, 10000)
+	x = np.linspace(0, 5000, 10000)
 	data = np.array([[x, Ei + Di/2 + Di * np.sin((2*math.pi*x) / Ci)]
 					 for (Ei, Di, Ci) in zip(E, D, C)])
 	points = ax[0].scatter(P, A, c=1/(P), s=200, alpha=0.5)
@@ -197,6 +197,76 @@ def mplimage1(request):
 	  text-align: right;
 	}
 	"""
+	
+	np.random.seed(0)
+		
+	P = np.random.random(size=9)
+	P[0]=6000
+	P[1]=3313
+	P[2]=6125
+	P[3]=3300
+	P[4]=5445
+	P[5]=5500
+	P[6]=6151
+	P[7]=5700
+	P[8]=7000
+
+	A = np.random.random(size=9)
+	A[0]=2000
+	A[1]=4168
+	A[2]=50
+	A[3]=3000
+	A[4]=3200
+	A[5]=2900
+	A[6]=1186
+	A[7]=565
+	A[8]=2440
+				
+	T = ["%.2f" % x for x in A]
+	T[0]='Cepheus - delta Cephei'
+	T[1]='Lyra - R Lyrae'
+	T[2]='Lyra - RR Lyrae'
+	T[3]='Lepus - RX Leponis'
+	T[4]='Dorado - beta Doradus'
+	T[5]='Gemini - zeta Geminorum'
+	T[6]='Auriga - RT Aurigae'
+	T[7]='Pavo - x Pavonis'
+	T[8]='Polaris - alpha Ursa Minoris'
+	# The period of variables
+	C = np.random.random(size=9)
+	C[0]=5.3
+	C[1]=46
+	C[2]=0.57
+	C[3]=60
+	C[4]=9.84
+	C[5]=10.15
+	C[6]=3.73
+	C[7]=9.09
+	C[8]=3.97
+	# The magnitude variation
+	D = np.random.random(size=9)
+	D[0]=1.1
+	D[1]=1.1
+	D[2]=1
+	D[3]=2.4
+	D[4]=0.6
+	D[5]=0.6
+	D[6]=0.8
+	D[7]=0.9
+	D[8]=0.3
+		
+	# The magnitude mean value
+	E = np.random.random(size=9)
+	E[0]=3.5
+	E[1]=3.9
+	E[2]=7.06
+	E[3]=5
+	E[4]=3.46
+	E[5]=3.62
+	E[6]=5
+	E[7]=3.91
+	E[8]=1.86
+	
 	fig, ax = plt.subplots()
 
 	########### INSTABILITY AREA ###########
