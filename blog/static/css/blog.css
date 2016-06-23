@@ -48,6 +48,7 @@ h1, h2, h3, h4, h5{
 
 .post p {
 	text-align: justify;
+	font-family: 'Bookman Old Style';
 }
 
 /* Paste this css to your style sheet file or under head tag */
@@ -73,4 +74,15 @@ if it's not present, don't show loader */
 	height: 100%;
 	z-index: 9999;
 	background: url('332.gif') 50% 50% no-repeat rgb(128,179,249);
+}
+
+.code , .pre{
+	background-color: #99ccff;
+	font-family: 'Terminal', cursive;
+	text-align: left;
+}
+
+pre {
+	text-align: left;
+    white-space: pre-line;
 }

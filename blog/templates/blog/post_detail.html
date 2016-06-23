@@ -11,6 +11,11 @@
 			{% include 'blog/inst_strip.html' %}
 			{% include 'blog/hr_full.html' %}
 		{% endif %}
+		{% if post.title == "Physics -> Build your first interactive course using the Turtle Graphics" %}
+			{% include 'blog/loading.html' %}
+			<h5>Note: Use Firefox, Chrome or Opera as web browsers for viewing the live graphs.</h5>
+			{% include 'blog/turtle_1.html' %}
+		{% endif %}
 		<p>{{ post.text|linebreaks }}</p>
 		{% if post.published_date %}
 		<div class="date">

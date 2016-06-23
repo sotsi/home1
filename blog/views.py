@@ -7,6 +7,10 @@ from django.shortcuts import redirect
 
 def post_list(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	#posts = Post.objects.raw('SELECT * FROM Post')
+	#for posts_trim in posts:
+	#	posts_t=posts_trim.text
+	#	posts_t=posts_t[:10]
 	return render(request, 'blog/post_list.html', {'posts': posts})
 	
 def post_detail(request, pk):

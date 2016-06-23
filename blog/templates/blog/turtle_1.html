@@ -1,0 +1,144 @@
+{% load staticfiles %}
+<html>
+	<head>
+	</head>
+	<body>
+	<div class="post">
+		<p>The following Python code depicts the major parts of Milky Way Galaxy using the Turtle Graphics in Python<p>
+		<pre>
+				import turtle
+				import math
+				import random
+
+				d1=14+3
+				d12=6+10
+				d2=5+10
+				d3=3
+				R1=d1/(2*math.sin(math.radians(3.6/2)))
+				R12=R1*d12/d1
+				R2=R1*d2/d1
+				R0=R1*d3/d1
+				disk=R2/10
+				cluster_radius=5
+
+				turtle.pensize(1)
+				turtle.speed(3)
+				turtle.right(90)
+				a=0
+				while a<=100:
+					turtle.pendown()
+					turtle.forward(3)
+					turtle.penup()
+					turtle.forward(14)
+					turtle.left(3.6)
+					a=a+1
+				turtle.home()
+
+				turtle.goto(R1-R12,0)
+				turtle.right(90)
+				a=0
+				while a<=100:
+					turtle.pendown()
+					turtle.forward(6)
+					turtle.penup()
+					turtle.forward(10)
+					turtle.left(3.6)
+					a=a+1
+				turtle.home()
+
+				turtle.goto(R1-R2,0)
+				turtle.pensize(2)
+				turtle.right(90)
+				a=0
+				while a<=100:
+					turtle.pendown()
+					turtle.forward(5)
+					turtle.penup()
+					turtle.forward(10)
+					turtle.left(3.6)
+					a=a+1
+				turtle.home()
+
+				turtle.goto(-2*R1,R1)
+				turtle.write("1. The halo of the Galaxy is approximately a sphere around it's core.")
+
+				turtle.goto(R1-R0,0)
+				turtle.pensize(3)
+				turtle.color("red")
+				turtle.right(90)
+				a=0
+				while a<=100:
+					turtle.pendown()
+					turtle.forward(3)
+					turtle.penup()
+					turtle.forward(0)
+					turtle.left(3.6)
+					a=a+1
+				turtle.home()
+
+				turtle.color("black")
+				turtle.goto(-2*R1,R1-50)
+				turtle.write("2. A massive black hole exists at the center of the core.")
+
+				turtle.pensize(1)
+				turtle.goto(disk,-disk)
+				turtle.pendown()
+				turtle.color("magenta")
+				turtle.forward(R1-disk-1.3*R0)
+				turtle.right(90)
+				turtle.circle(1.3*R0,180)
+				turtle.right(90)
+				turtle.forward(R1-disk-1.3*R0)
+				turtle.circle(disk,180)
+				turtle.forward(R1-disk-1.3*R0)
+				turtle.right(90)
+				turtle.circle(1.3*R0,180)
+				turtle.right(90)
+				turtle.forward(R1-disk-1.3*R0)
+				turtle.circle(disk,180)
+				turtle.penup()
+
+				turtle.color("black")
+				turtle.goto(-2*R1,R1-100)
+				turtle.write("3. The bulge and the disk of the Galaxy where most of the stars rotate around the core.")
+
+				x=cluster_radius
+				while x<(2*R1) :
+					y=random.uniform(-math.sqrt(math.pow(R1,2)-math.pow(R1-x,2))+2*cluster_radius,math.sqrt(math.pow(R1,2)-math.pow(R1-x,2)-2*cluster_radius))
+					turtle.goto(x,y)
+					turtle.color("blue")
+					turtle.pendown()
+					turtle.circle(cluster_radius, steps=5)
+					turtle.penup()
+					x=x+10
+
+				turtle.color("black")
+				turtle.goto(-2*R1,R1-150)
+				turtle.write("4. Globular clusters may exist within the halo.")
+
+				turtle.pensize(1)
+				turtle.home()
+				turtle.right(180)
+				turtle.color("blue")
+				turtle.pendown()
+				turtle.goto(-R1,0)
+				turtle.penup()
+				turtle.goto(R1-R1/math.sqrt(2),R1/math.sqrt(2))
+				turtle.pendown()
+				turtle.goto(-R1+R1/math.sqrt(2),R1/math.sqrt(2))
+				turtle.penup()
+				turtle.goto(R1-R1/math.sqrt(2),-R1/math.sqrt(2))
+				turtle.pendown()
+				turtle.goto(-R1+R1/math.sqrt(2),-R1/math.sqrt(2))
+				turtle.penup()
+
+				turtle.color("black")
+				turtle.goto(-2*R1,R1-200)
+				turtle.write("5. The Galaxy is also in continuous motion.")
+
+				turtle.done()
+			</pre>
+			{% load static %} <img src="{% static "images/MilkyWayTurtle.jpg" %}" alt="Milky Way Turtle!" width=100%;height=100%;/>
+		</div>
+	</body>
+</html>
