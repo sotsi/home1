@@ -35,12 +35,7 @@ class Question(models.Model):
 	create_date = models.DateTimeField(
 		default=timezone.now)
 		
-class Question_(models.Model):
-	email = models.CharField(max_length=100)
-	question = models.CharField(max_length=200)
-	create_date = models.DateTimeField(
-		default=timezone.now)
-		
+
 class Questions(models.Model):
 	email = models.CharField(max_length=100)
 	question = models.TextField()
