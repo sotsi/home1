@@ -1,7 +1,8 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-<h5>Developer: Sotirios Ilias Tsivras - so.tsivras@gmail.com</h5>
+<h5>Developer: Sotirios Ilias Tsivras</h5>
 <h5>Note: Use Firefox, Chrome or Opera as web browsers for viewing the live graphs</h5>
+<a class="btn btn-default" href="{% url 'quest_new' %}"><h5><span class="glyphicon glyphicon-envelope"> <font face="Courier">Contact Form </font></span></h5></a>
 	{% for post in posts %}
 		<div class="post">
 			<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
