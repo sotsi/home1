@@ -1,0 +1,169 @@
+{% load staticfiles %}
+<html>
+	<head>
+	</head>
+	<body>
+	<div class="post">
+	<p>Suppose that you have to write a code that dynamically plots a "Magnitude Variation vs Period" diagam for variable stars. The graph should look like:</p>
+	{% load static %} <img src="{% static "images/inst_strip_table.jpg" %}" alt="Pulsating Variables!" width=100%;height=100%;/>
+	<p><br>The graph will be based on data given by the following table that stores some key parameters of a few variable stars 
+	(Source: Wikipedia - List of Variable Stars).<br></p>
+	<table class="var_table" border="1" cellspacing="0" cellpadding="5">
+	<tr>
+	<th>Star</th>
+	<th>Constellation</th>
+	<th>Type</th>
+	<th>Magnitude Range</th>
+	<th>Period (days)</th>
+	</tr>
+	<tr>
+	<td>δ Cep</td>
+	<td >Cepheus</td>
+	<td >Classical Cepheid</td>
+	<td >0.89</td>
+	<td >5.37</td>
+	</tr>
+	<tr>
+	<td>χ Cyg</td>
+	<td >Cygnus</td>
+	<td >Classical Cepheid</td>
+	<td >1.06</td>
+	<td >16.39</td>
+	</tr>
+	<tr>
+	<td>SS Cyg</td>
+	<td >Cygnus</td>
+	<td >Dwarf Nova</td>
+	<td >4.7</td>
+	<td >49.5</td>
+	</tr>
+	<tr>
+	<td>β Dor</td>
+	<td >Dorado</td>
+	<td >Classical Cepheid</td>
+	<td >0.62</td>
+	<td >9.84</td>
+	</tr>
+	<tr>
+	<td>ζ Gem</td>
+	<td >Gemini</td>
+	<td >Classical Cepheid</td>
+	<td >0.56</td>
+	<td >10.15</td>
+	</tr>
+	<tr>
+	<td>β Lyr</td>
+	<td >Lyra</td>
+	<td >Eclipsing Binary</td>
+	<td >1.11</td>
+	<td >12.9</td>
+	</tr>
+	<tr>
+	<td>RR Lyr</td>
+	<td >Lyra</td>
+	<td >RR Lyrae Variable</td>
+	<td >1.06</td>
+	<td >0.57</td>
+	</tr>
+	<tr>
+	<td>BF Oph</td>
+	<td >Ophiuchus</td>
+	<td >Classical Cepheid</td>
+	<td >0.78</td>
+	<td >4.06</td>
+	</tr>
+	<tr>
+	<td>κ Pavo</td>
+	<td >Pavo</td>
+	<td >Type II Cepheid</td>
+	<td >0.87</td>
+	<td >9.1</td>
+	</tr>
+	<tr>
+	<td>β Per (Algol)</td>
+	<td >Perseus</td>
+	<td >Eclipsing Binary</td>
+	<td >1.27</td>
+	<td >2.87</td>
+	</tr>
+	<tr>
+	<td>U Sgr</td>
+	<td >Sagittarius</td>
+	<td >Classical Cepheid</td>
+	<td >0.87</td>
+	<td >6.75</td>
+	</tr>
+	<tr>
+	<td>α UMi (Polaris)</td>
+	<td >Ursa Minor</td>
+	<td >Classical Cepheid</td>
+	<td >0.27</td>
+	<td >3.97</td>
+	</tr>
+</table>
+	<p><br>Solution: The idea for plotting the "Magnitude Variation vs Period" graph is:
+	<ol>
+		  <li>locate the URL of the webpage</li>
+		  <li>develop a python code to filter only the data we need</li>
+		  <li>plot the data using Matplotlib</li>
+	</ol></p>
+	<p>So, start a new app in django, and replace the function inside the views.py file with the following:<p>
+		<pre>
+				def mplimage(request):
+						# general configurations
+						user_agent = 'Mozilla/5.0 (compatible; MSIE 5.5; Windows NT)'
+						headers = { 'User-Agent' : user_agent }
+						url = "http://sotsiv.pythonanywhere.com/post/4/" 
+						req = urllib2.Request(url, headers=headers)
+						response = urllib2.urlopen(req) 
+						doc = parse(response).getroot() 
+						table = doc.cssselect('table.var_table')[0] 
+						
+						# python data structures that will store the data
+						name = [] 
+						constellation = []
+						type = [] 
+						dmagnitude = [] 
+						period = [] 
+
+						# fill in the empty data structures
+						for row in table.cssselect('tr')[1:]: 
+							data = row.cssselect('td')
+							name_ = data[0].text_content()
+							constellation_ = data[1].text_content()
+							type_ = data[2].text_content() 
+							dmagnitude_ = data[3].text_content()
+							period_ = data[4].text_content()
+							
+							# now we store the modified data to our lists
+							name.append(str(name_))
+							constellation.append(str(constellation_))
+							type.append(str(type_))
+							dmagnitude.append(float(dmagnitude_))
+							period.append(float(period_))
+							
+						matplotlib.rc('font', family='Segoe Print')
+						fig = Figure(dpi=100)
+						canvas = FigureCanvas(fig)
+						ax = fig.add_subplot(111)
+						ax.scatter(period, dmagnitude, s=50, c='b')
+						ax.set_title("Period - Magnitude Variation Diagram (Instability Strip)")
+						ax.set_ylabel('Magnitude Variation', size=15)
+						ax.set_xlabel('Period (days)', size=15)
+						ax.set_xlim(0, 11)
+						ax.set_ylim(0, 1.7)
+						i=0
+						while i < len(name):
+							full_desc = name[i] # we could define: full_desc = name[i]+', '+type[i]+', '+constellation[i]
+							ax.annotate(full_desc, xy=(period[i], dmagnitude[i]), xytext=(period[i]+0.5, dmagnitude[i]+0.3), arrowprops=dict(facecolor='magenta', arrowstyle='fancy'))
+							i=i+1
+						response=django.http.HttpResponse(content_type='image/png')
+						canvas.print_png(response)
+						return response
+			</pre>
+			<p>Open a cmd, go to the file where the django project is located, and run the server (>python_manage.py_runserver).
+				Open your web broswer and go to the link http://127.0.0.1:8000/mplimage where your webpage is located. 
+				You should be able to see the image given at the top of the current webpage.</p>
+		</div>
+	</body>
+</html>
