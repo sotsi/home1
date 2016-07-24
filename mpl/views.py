@@ -100,7 +100,7 @@ def mplimage(request):
 	# general configurations
 	user_agent = 'Mozilla/5.0 (compatible; MSIE 5.5; Windows NT)' # access the website URL
 	headers = { 'User-Agent' : user_agent } # define the url header
-	url = "http://localhost/MatplotlibRealWorld.html" # the location of the website
+	url = "http://sotsiv.pythonanywhere.com/post/4/" # the location of the website
 	req = urllib2.Request(url, headers=headers) # request for the specific url
 	response = urllib2.urlopen(req) # the response of our request
 	doc = parse(response).getroot() # parses the response
@@ -337,7 +337,7 @@ def mplimage2(request):
 	# and return it
 	return response
 	
-def mplimage1(request):
+def mplimage23(request):
 	# do the plotting
 	fig = Figure()
 	canvas = FigureCanvas(fig)
