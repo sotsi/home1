@@ -131,7 +131,7 @@ def mplimage(request):
 	fig = Figure(dpi=100)
 	canvas = FigureCanvas(fig)
 	ax = fig.add_subplot(111)
-	ax.scatter(period, dmagnitude, s=50, c='b')
+	ax.scatter(period, dmagnitude, s=60, c='b')
 	ax.set_title("Period - Magnitude Variation Diagram (Instability Strip)")
 	ax.set_ylabel('Magnitude Variation', size=15)
 	ax.set_xlabel('Period (days)', size=15)
