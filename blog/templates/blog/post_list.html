@@ -3,6 +3,11 @@
 <h5>Developer: Sotirios Ilias Tsivras</h5>
 <h5>Note: Use Firefox, Chrome or Opera as web browsers for viewing the live graphs</h5>
 <a class="btn btn-default" href="{% url 'quest_new' %}"><h5><span class="glyphicon glyphicon-envelope"> <font face="Courier">Contact Form </font></span></h5></a>
+<div class="post"><br><p>"If I have seen further, it is by standing on the shoulders of giants" (Isaac Newton)<br>
+		The above well known phrase is used to mention that in order to develop easy and interactive applications 
+		for Physics, you don't have to reinvent the wheel.
+		Django - a robust Python framework - and Matplotlib - a rich Python library - 
+		does the work for you in a few simple steps.</p>{% include 'blog/hr_regions.html' %}</div>
 	{% for post in posts %}
 		<div class="post">
 			<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
